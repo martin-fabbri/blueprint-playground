@@ -1,0 +1,10 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "tailwind.js",
+      "node_modules/**/*.ts"
+    ]
+  }
+}
