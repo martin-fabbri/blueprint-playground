@@ -19,7 +19,37 @@ class App extends React.Component {
         const {showHeader, ...calloutProps} = this.state;
 
         return (
-            <div className="App">
+            <div className="">
+
+                <nav className="pt-navbar">
+                    <div className="pt-navbar-group pt-align-left">
+                        <div className="pt-navbar-heading">8 Color PBMC Tutorial</div>
+                        <span className="pt-navbar-divider"/>
+                        <div className="pt-input-group">
+                            <span className="pt-icon pt-icon-search"/>
+                            <input
+                                type="search"
+                                className="pt-input"
+                                placeholder="Search groups..."
+                            />
+                        </div>
+                        <div className="pt-text-muted pt-small">
+                            LD1_NS_+_NS_A1_exp
+                        </div>
+                    </div>
+                    <div className="pt-navbar-group pt-align-right">
+                        <button className="pt-button pt-minimal pt-icon-control">Configure Workspace</button>
+                        <div className="pt-button-group pt-minimal">
+                            <a className="pt-button pt-icon-undo" role="button"/>
+                            <a className="pt-button pt-icon-redo" role="button"/>
+                        </div>
+                        <span className="pt-navbar-divider"/>
+                        <button className="pt-button pt-minimal pt-icon-user"/>
+                        <button className="pt-button pt-minimal pt-icon-help"/>
+                        <button className="pt-button pt-minimal pt-icon-cog"/>
+                    </div>
+                </nav>
+
                 <div className="pt-callout pt-intent-success pt-icon-tick-circle">
                     <h4>Success</h4>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.

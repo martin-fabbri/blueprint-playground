@@ -1,5 +1,9 @@
 import {Button, NonIdealState} from '@blueprintjs/core';
 import {Subject} from 'rxjs';
+// import {fromPromise} from 'rxjs/observable/fromPromise';
+import { fromPromise } from 'rxjs/internal/observable/fromPromise';
+import {debounceTime, distinctUntilChanged, filter, switchMap} from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
 
 import '@blueprintjs/core/lib/css/blueprint.css';
 import '@blueprintjs/icons/lib/css/blueprint-icons.css';
@@ -10,11 +14,17 @@ export interface IProps {
     text?: string;
 }
 
+export interface IUser {
+    name: string,
+    username: string;
+    website: string;
+}
+
 export interface IState {
     limit?: number;
-    loading: boolean;
+    loading?: boolean;
     offset?: number;
-    results?: string[] | null,
+    results?: IUser[],
     search: string;
     total?: number
 };
@@ -30,7 +40,7 @@ const INITIAL_STATE: IState = {
 
 class App extends React.Component<IProps, IState> {
 
-    private search$: Subject<string>;
+    private readonly search$: Subject<string> = new Subject<string>();
 
     constructor(props: IProps) {
         super(props);
@@ -40,8 +50,6 @@ class App extends React.Component<IProps, IState> {
     }
 
     public componentWillMount() {
-        this.search$ = new Subject<string>();
-
         this.search$.subscribe(value => {
             this.setState(
                 (value.length === 0)
@@ -49,6 +57,27 @@ class App extends React.Component<IProps, IState> {
                     : ({ search: value})
             )
         });
+
+        this.search$
+            .pipe(
+                tap(search => console.log('pipe is working .... ')),
+                filter(search => search.length > 0),
+                debounceTime(400),
+                distinctUntilChanged(),
+                switchMap(search => {
+                    console.log('inside ... switchmappppppp');
+                    return fromPromise(
+                        fetch(`http://jsonplaceholder.typicode.com/users/?q=${search}`)
+                    );
+                })
+            ).subscribe(response => {
+                response.json().then(responseResults =>
+                    this.setState({
+                        results: responseResults ? responseResults : [],
+                        search: this.state.search
+                    })
+                );
+            });
         console.log('componentWillMount COMPLETED!!!');
     }
 
@@ -95,13 +124,23 @@ class App extends React.Component<IProps, IState> {
                         {search.length > 0 && results && results.length === 0 &&
                             <NonIdealState
                                 title="No results!"
-                                description="Your search didn't match any words in our dictionary."
-                                visual={(
-                                    <div className="pt-non-ideal-state-visual pt-non-ideal-state-icon">
-                                        <span className="pt-icon pt-icon-arrow-up"/>
-                                    </div>
+                                description={(
+                                    <p>Your search didn't match any words in our dictionary.</p>
                                 )}
+                                visual="search"
                             />
+                        }
+
+                        {search.length > 0 && results && results.length > 0 &&
+                            <div>
+                                <div className="">
+                                    {results && results.map(item => (
+                                        <div key={item.username}>
+                                            <span className="pt-tag pt-large pt-minimal">{item.name}</span>
+                                        </div>
+                                    ))}
+                              </div>
+                            </div>
                         }
 
                     </div>
