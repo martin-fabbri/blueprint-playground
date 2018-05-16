@@ -22,7 +22,7 @@ const ViewIdMosaicWindow = MosaicWindow.ofType<ViewId>();
 
 const TITLE_MAP: Record<ViewId, string> = {
     a: 'Graph Window',
-    b: 'Groups',
+    b: 'Populations',
     c: 'Layout',
     new: 'New Window',
 };
@@ -162,7 +162,87 @@ class App extends React.Component {
                                     </div>
                                     }
 
-                                    {id !== 'a' && <h1>{TITLE_MAP[id]}</h1>}
+                                    {id === 'b' &&
+                                    <div>
+                                        <div className="pt-tree pt-elevation-0">
+                                            <ul className="pt-tree-node-list pt-tree-root">
+                                                <li className="pt-tree-node pt-tree-node-expanded border-b bg-orange-lightest">
+                                                    <div className="bg-orange-lightest border-l-4 border-orange-dark">
+                                                        <div className="pt-tree-node-content flex-none">
+                                                        <span
+                                                        className="pt-tree-node-caret pt-tree-node-caret-open pt-icon-standard"/>
+                                                            <span
+                                                                className="pt-tree-node-icon pt-icon-standard pt-icon-selection text-green"/>
+                                                            <span className="pt-tree-node-label font-bold text-orange-dark">LD_NS+NS_A01_exp.fs</span>
+                                                            <span
+                                                                className="pt-tree-node-secondary-label text-xs">96,670 events</span>
+                                                        </div>
+                                                        <ul className="pt-tree-node-list">
+                                                            <li className="pt-tree-node">
+                                                                <div className="pt-tree-node-content">
+                                                            <span
+                                                                className="pt-tree-node-caret-none pt-icon-standard"/>
+                                                                    <span
+                                                                        className="pt-tree-node-icon pt-icon-standard pt-icon-left-join"/>
+                                                                    <span className="pt-tree-node-label">Q1: CD4-, CD8+</span>
+                                                                    <span
+                                                                        className="pt-tree-node-secondary-label text-xs">42,908 events</span>
+                                                                </div>
+                                                            </li>
+                                                            <li className="pt-tree-node">
+                                                                <div className="pt-tree-node-content">
+                                                            <span
+                                                                className="pt-tree-node-caret-none pt-icon-standard"/>
+                                                                    <span
+                                                                        className="pt-tree-node-icon pt-icon-standard pt-icon-left-join"/>
+                                                                    <span
+                                                                        className="pt-tree-node-label">Q2: CD4+, CD8+</span>
+                                                                    <span
+                                                                        className="pt-tree-node-secondary-label text-xs">25,398 events</span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+
+                                                </li>
+
+                                                <li className="pt-tree-node pt-tree-node-expanded border-b">
+                                                    <div className="pt-tree-node-content">
+                                                        <span
+                                                            className="pt-tree-node-caret pt-tree-node-caret-closed pt-icon-standard"/>
+                                                        <span
+                                                            className="pt-tree-node-icon pt-icon-standard pt-icon-selection text-blue"/>
+                                                        <span className="pt-tree-node-label font-bold">LD_NS+NS_PI_C01_exp.fs</span>
+                                                        <span
+                                                            className="pt-tree-node-secondary-label text-xs">222,670 events</span>
+                                                    </div>
+                                                </li>
+
+                                                <li className="pt-tree-node pt-tree-node-expanded">
+                                                    <div className="pt-tree-node-content">
+                                                        <span
+                                                            className="pt-tree-node-caret pt-tree-node-caret-closed pt-icon-standard"/>
+                                                        <span
+                                                            className="pt-tree-node-icon pt-icon-standard pt-icon-selection text-red"/>
+                                                        <span className="pt-tree-node-label font-bold">LD_NS+NS_PI_C01_exp.fs</span>
+                                                        <span className="pt-tag pt-intent-danger">File not found</span>
+                                                        <span
+                                                            className="pt-tree-node-secondary-label">
+                                                            <button type="button"
+                                                                    className="pt-button pt-intent-danger pt-minimal">
+                                                                Reload
+                                                                <span className="pt-icon-standard pt-icon-refresh pt-align-right"/>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    }
+
+                                    {id === 'c' && <h1>{TITLE_MAP[id]}</h1>}
 
                                 </ViewIdMosaicWindow>
                             )}
