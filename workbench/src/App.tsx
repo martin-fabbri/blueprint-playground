@@ -168,7 +168,7 @@ class App extends React.Component {
                                             <ul className="pt-tree-node-list pt-tree-root">
                                                 <li className="pt-tree-node pt-tree-node-expanded border-b bg-orange-lightest">
                                                     <div className="bg-orange-lightest border-l-4 border-orange-dark">
-                                                        <div className="pt-tree-node-content flex-none">
+                                                        <div className="pt-tree-node-content flex-none border-b border-dotted">
                                                         <span
                                                         className="pt-tree-node-caret pt-tree-node-caret-open pt-icon-standard"/>
                                                             <span
@@ -178,7 +178,7 @@ class App extends React.Component {
                                                                 className="pt-tree-node-secondary-label text-xs">96,670 events</span>
                                                         </div>
                                                         <ul className="pt-tree-node-list">
-                                                            <li className="pt-tree-node">
+                                                            <li className="pt-tree-node border-b border-dotted">
                                                                 <div className="pt-tree-node-content">
                                                             <span
                                                                 className="pt-tree-node-caret-none pt-icon-standard"/>
@@ -219,7 +219,7 @@ class App extends React.Component {
                                                     </div>
                                                 </li>
 
-                                                <li className="pt-tree-node pt-tree-node-expanded">
+                                                <li className="pt-tree-node pt-tree-node-expanded border-b">
                                                     <div className="pt-tree-node-content">
                                                         <span
                                                             className="pt-tree-node-caret pt-tree-node-caret-closed pt-icon-standard"/>
@@ -230,14 +230,15 @@ class App extends React.Component {
                                                         <span
                                                             className="pt-tree-node-secondary-label">
                                                             <button type="button"
-                                                                    className="pt-button pt-intent-danger pt-minimal">
-                                                                Reload
+                                                                    className="pt-button pt-intent-danger pt-minimal text-xs">
                                                                 <span className="pt-icon-standard pt-icon-refresh pt-align-right"/>
                                                             </button>
                                                         </span>
                                                     </div>
                                                 </li>
                                             </ul>
+                                            <a href="#">Add Statistics</a>
+                                            <a href="#" className="ml-3">Add Keyword</a>
                                         </div>
                                     </div>
                                     }
